@@ -14,7 +14,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Tencent-RTC/TRTC_SwiftPM.git", .branch("main")),
+        .package(url: "https://github.com/Tencent-RTC/Professional_SwiftPM.git", .branch("main")),
         .package(url: "https://github.com/Tencent-RTC/Chat_SDK_SwiftPM.git", from: "8.3.6498")
     ],
     targets: [
@@ -28,7 +28,7 @@ let package = Package(
             name: "RoomEngine",
             dependencies: [
                 .target(name: "RTCRoomEngine"),
-                .product(name: "TRTC_SwiftPM", package: "trtc_swiftpm"),
+                .product(name: "Professional_SwiftPM", package: "Professional_swiftpm"),
                 .product(name: "Chat_SDK_SwiftPM", package: "chat_sdk_swiftpm")
             ],
             sources: ["RoomEngine.swift"],
