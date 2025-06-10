@@ -14,7 +14,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Tencent-RTC/Professional_SwiftPM.git", .branch("main")),
+        .package(url: "https://github.com/Tencent-RTC/Professional_SwiftPM.git", from: "12.4.0"),
         .package(url: "https://github.com/Tencent-RTC/Chat_SDK_SwiftPM.git", from: "8.3.6498")
     ],
     targets: [
@@ -34,9 +34,7 @@ let package = Package(
             ],
             sources: ["RoomEngine.swift"],
             linkerSettings: [
-                .linkedLibrary("sqlite3.0"),
-                .linkedLibrary("c++"),
-                .linkedLibrary("resolv")
+                .linkedFramework("AudioToolBox"),
             ]
         )
     ]
