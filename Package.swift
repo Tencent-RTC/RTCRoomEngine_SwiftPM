@@ -34,6 +34,7 @@ let package = Package(
             ],
             sources: ["RoomEngine.swift"],
             linkerSettings: [
+                .linkedFramework("CoreAudio")
                 .linkedLibrary("sqlite3.0"),
                 .linkedLibrary("c++"),
                 .linkedLibrary("resolv")
