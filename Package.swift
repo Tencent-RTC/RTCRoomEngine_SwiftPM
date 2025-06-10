@@ -37,7 +37,7 @@ let package = Package(
                 .linkedLibrary("sqlite3.0"),
                 .linkedLibrary("c++"),
                 .linkedLibrary("resolv"),
-                .linkedFramework("CoreAudio")
+                .linkedFramework("AVKit"),
             ]
         )
     ]
