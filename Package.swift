@@ -1,40 +1,33 @@
-// swift-tools-version: 6.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:6.0
 import PackageDescription
 
 let package = Package(
     name: "RoomEngine",
-    platforms: [
-        .iOS(.v12)
-    ],
+    platforms: [.iOS(.v13)],
     products: [
-        .library(
-            name: "RoomEngine",
-            targets: ["RoomEngine"]
-        ),
+        .library(name: "RoomEngine",
+                 targets: ["RTCRoomEngineBinary", "RoomEngineDeps"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Tencent-RTC/Professional_SwiftPM.git", from: "12.9.0"),
-        .package(url: "https://github.com/Tencent-RTC/Chat_SDK_SwiftPM.git", from: "8.5.6864")
+        .package(url: "https://github.com/Tencent-RTC/Chat_SDK_SwiftPM.git", from: "9.0.7652"),
+        .package(url: "https://github.com/Tencent-RTC/Professional_SwiftPM.git", from: "13.3.20845")
     ],
     targets: [
-
         .binaryTarget(
-            name: "RTCRoomEngine",
-            url: "https://liteav.sdk.qcloud.com/app/tuikit/download/release/3.6/RTCRoomEngine_iOS_3.6.3.91_SDK.zip",
-            checksum: "c1a7d9b5ec3d8b5f0348e8656a16a8b20ae802d85fd954e93b5d9360e7a352f8"
+            name: "RTCRoomEngineBinary",
+            url: "https://liteav.sdk.qcloud.com/app/tuikit/download/release/4.3/RTCRoomEngine_iOS_4.3.0.49_SDK.zip",
+            checksum: "bf104b6d64fd02066fefb28e744ebc5e692a33b29fea9a1c0b9d1694114efccd"
         ),
         .target(
-            name: "RoomEngine",
+            name: "RoomEngineDeps",
             dependencies: [
-                .target(name: "RTCRoomEngine"),
-                .product(name: "Professional_SwiftPM", package: "Professional_swiftpm"),
-                .product(name: "TXLiteAVSDK_ReplayKit", package: "professional_swiftpm"), 
-                .product(name: "Chat_SDK_SwiftPM", package: "chat_sdk_swiftpm")
+                .product(name: "Chat_SDK_SwiftPM", package: "Chat_SDK_SwiftPM"),
+                .product(name: "Professional_SwiftPM", package: "Professional_SwiftPM")
             ],
-            sources: ["RoomEngine.swift"],
+            path: "Sources/Deps",
             linkerSettings: [
-                .linkedFramework("AudioToolBox"),
+                .linkedFramework("CoreTelephony"),
+                .linkedLibrary("sqlite3")
             ]
         )
     ]
